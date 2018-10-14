@@ -1,17 +1,4 @@
-// import DummyClass from '../src/loanlibrary'
-
-/**
- * Dummy test
- */
-// describe('Dummy test', () => {
-//   it('works if true is truthy', () => {
-//     expect(true).toBeTruthy()
-//   })
-
-//   it('DummyClass is instantiable', () => {
-//     expect(new DummyClass()).toBeInstanceOf(DummyClass)
-//   })
-// })
+// test for loan library
 
 import {drawdownAmount, lendingFee, otherFees, loanOneBalance, loanTwoBalance, nonUtilizationInterest,minimumInterest, exitFees} from "../src/loanlibrary";
 
