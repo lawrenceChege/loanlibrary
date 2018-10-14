@@ -1,6 +1,6 @@
 
 // import required libraries
-import moment = require("moment")
+import * as moment from "moment"
 
 
 // definitions and variables
@@ -51,6 +51,7 @@ let balancingInterestOutstanding: number
 let lendingFees: number
 let lendingFeePercentage: number
 let lendingFeeAddedToLoan: String
+let lendingFeeInterestServiced: String
 
 let otherFeesPayable: number
 let OtherFeesAddedToLoan: String
@@ -67,7 +68,6 @@ let exitFeeLoan: number
 
 // general loan variables
 let facilityAmount: number
-let totalLoan: number
 let loanType: number
 let drawdownOneAmount: number
 let drawdownAmountTwo: number
@@ -131,14 +131,13 @@ export function drawdownAmount() {
 
     }
 
-
 }
 // calculate lending fees on first drawdown date
 export function lendingFee() {
-    if (interestServiced === "yes") {
-        lendingFees = totalLoan * (lendingFeePercentage / 100)
-    } else if (interestServiced === "no") {
-        lendingFees = (totalLoan * loanInterestRate / 100) * (lendingFeePercentage / 100)
+    if (lendingFeeInterestServiced === "yes") {
+        lendingFees = facilityAmount * (lendingFeePercentage / 100)
+    } else if (lendingFeeInterestServiced === "no") {
+        lendingFees = (facilityAmount * loanInterestRate / 100) * (lendingFeePercentage / 100)
         if (lendingFeeAddedToLoan === "yes") {
             feeDue = feeDue + lendingFees
             feePaid = feePaid + lendingFees
@@ -260,7 +259,7 @@ export function exitFees() {
         feeOutstanding = feeOutstanding + exitFeeAmount
     }
     if (exitFeeLoan !== 0) {
-        exitFeeAmount = (totalLoan + totalInterestCharged) * (exitFeeLoan / 100)
+        exitFeeAmount = (facilityAmount + totalInterestCharged) * (exitFeeLoan / 100)
         feeCharged = feeCharged + exitFeeAmount
         feeDue = feeDue + exitFeeAmount
         feeOutstanding = feeOutstanding + exitFeeAmount

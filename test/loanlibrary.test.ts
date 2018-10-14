@@ -18,7 +18,9 @@ import {drawdownAmount, lendingFee, otherFees, loanOneBalance, loanTwoBalance, n
 import * as mocha from 'mocha';
 import * as chai from 'chai';
 
+// test runners
 const expect = chai.expect;
+const assert = chai.assert
 
 let startDate: String = "2-Oct-2018"
 let repaymentDate: String = "1-Dec-2018"
@@ -71,6 +73,7 @@ let balancingInterestOutstanding: number = 0
 let lendingFees: number = 0
 let lendingFeePercentage: number = 2
 let lendingFeeAddedToLoan: String = "yes"
+let lendingFeeInterestServiced: String = "yes"
 
 let otherFeesPayable: number = 5000
 let OtherFeesAddedToLoan: String = "yes"
@@ -86,7 +89,7 @@ let exitFeeGDV: number = 2
 let exitFeeLoan: number = 0
 
 // general loan variables
-let facilityAmount: number = 10000
+let facilityAmount: number = 100000
 let totalLoan: number = 0
 let loanType: number = 1
 let drawdownOneAmount: number = 50000
@@ -99,65 +102,196 @@ let TotalFeesDue: number = 0
 let BalanceOfLoanOutstanding: number = 0
 let TotalRedemptionAmount: number = 0
 
+// Test for drawdown Amount
 describe('loanlibrary', () => {
 
-  it('should be able to ', () => {
-    expect(drawdownAmount()).to.equal(7);
+  it('should be able to update the dradown amount ', () => {
+    drawdownAmount();
+    assert.equal(drawdownOneAmount, 50000);
   });
 
 });
 
+// Test for undrawn balancce
 describe('loanlibrary', () => {
 
-  it('should be able to ', () => {
-    expect(lendingFee()).to.equal(7);
+  it('should be able to update the undrawn balance amount ', () => {
+    drawdownAmount();
+    assert.equal(undrawnBalance, 50000);
   });
 
 });
 
+// Test for lending fees
 describe('loanlibrary', () => {
 
-  it('should be able to ', () => {
-    expect(otherFees()).to.equal(7);
+  it('should be able to update the lending Amount ', () => {
+    lendingFee();
+    assert.equal(lendingFees, 2000);
   });
 
 });
+// test foe fee due after lending fee is added
 describe('loanlibrary', () => {
 
-  it('should be able to ', () => {
-    expect(loanOneBalance()).to.equal(7);
-  });
-
-});
-
-describe('loanlibrary', () => {
-
-  it('should be able to ', () => {
-    expect(loanTwoBalance()).to.equal(7);
+  it('should be able to update the fee due Amount ', () => {
+    lendingFee();
+    assert.equal(feeDue, 2000);
   });
 
 });
 
+// Test for balance of loan one after lending fee is added
 describe('loanlibrary', () => {
 
-  it('should be able to ', () => {
-    expect(nonUtilizationInterest()).to.equal(7);
-  });
-
-});
-describe('loanlibrary', () => {
-
-  it('should be able to ', () => {
-    expect(minimumInterest()).to.equal(7);
-  });
-
-});
-describe('loanlibrary', () => {
-
-  it('should be able to ', () => {
-    expect(exitFees()).to.equal(7);
+  it('should be able to update the balance of loan one Amount ', () => {
+    lendingFee();
+    assert.equal(balanceOfLoanOne, 2000);
   });
 
 });
 
+// Test for other fees
+describe('loanlibrary', () => {
 
+  it('should be able to update the other fees Amount ', () => {
+    otherFees();
+    assert.equal(otherFeesPayable, 2000);
+  });
+
+});
+// test foe fee due after lending fee is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the fee due Amount ', () => {
+    otherFees();
+    assert.equal(feeDue, 2000);
+  });
+
+});
+
+// Test for balance of loan one after lending fee is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the balance of loan one Amount ', () => {
+    otherFees();
+    assert.equal(balanceOfLoanOne, 2000);
+  });
+
+});
+
+// Test for balance of loan one
+describe('loanlibrary', () => {
+
+  it('should be able to update the daily interest Amount ', () => {
+    loanOneBalance();
+    assert.equal(dailyOneInterest, 2000);
+  });
+
+});
+// test for total interest charged after daily interest for loan one is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the total interest charged Amount ', () => {
+    loanOneBalance();
+    assert.equal(totalInterestCharged, 2000);
+  });
+
+});
+
+// Test for balance of loan one after daily interest is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the balance of loan one Amount ', () => {
+    loanOneBalance();
+    assert.equal(balanceOfLoanOne, 2000);
+  });
+
+});
+
+// Test for balance of loan two
+describe('loanlibrary', () => {
+
+  it('should be able to update the daily interest Amount ', () => {
+    loanTwoBalance();
+    assert.equal(dailyTwoInterest, 2000);
+  });
+
+});
+// test for total interest charged after daily interest for loan two is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the total interest charged Amount ', () => {
+    loanTwoBalance();
+    assert.equal(totalInterestCharged, 2000);
+  });
+
+});
+
+// Test for balance of loan two after daily interest is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the balance of loan two Amount ', () => {
+    loanOneBalance();
+    assert.equal(balanceOfLoanTwo, 2000);
+  });
+
+});
+
+// Test for balance of non utilization rate
+describe('loanlibrary', () => {
+
+  it('should be able to update the daily no utilization interest Amount ', () => {
+    nonUtilizationInterest();
+    assert.equal(dailyNonUtilizationInterest, 2000);
+  });
+
+});
+// test for total interest charged after daily non utilization interestis added
+describe('loanlibrary', () => {
+
+  it('should be able to update the total interest charged Amount ', () => {
+    nonUtilizationInterest();
+    assert.equal(totalInterestCharged, 2000);
+  });
+
+});
+
+// Test for balance of loan one after daily non utilization interest is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the balance of loan one Amount ', () => {
+    nonUtilizationInterest();
+    assert.equal(balanceOfLoanOne, 2000);
+  });
+
+});
+
+// Test for minimum interest
+describe('loanlibrary', () => {
+
+  it('should be able to check the balancing interest Amount ', () => {
+    minimumInterest();
+    assert.equal(balancingInterestCharged, 2000);
+  });
+
+});
+// test for exit fees
+describe('loanlibrary', () => {
+
+  it('should be able to update the exit fees Amount ', () => {
+    exitFees();
+    assert.equal(exitFeeAmount, 2000);
+  });
+
+});
+
+// Test for balance of fee due after exit fee amount is added
+describe('loanlibrary', () => {
+
+  it('should be able to update the fee due Amount ', () => {
+    exitFees();
+    assert.equal(feeDue, 2000);
+  });
+
+});
