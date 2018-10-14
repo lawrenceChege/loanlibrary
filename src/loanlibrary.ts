@@ -84,16 +84,6 @@ let x: number
 let y: number
 
 
-export function add(x: number, y: number) {
-    z = x + y;
-    w = x * y;
-    let q: any = {
-        "z": z,
-        "w": w
-    }
-    return q;
-}
-
 export function loan() {
     // define date variables        
     let date = moment().format('d-MMM-YYYY');
@@ -115,8 +105,12 @@ export function loan() {
 
         }
         // for every other midnight
-        loanOneBalance();
-        loanTwoBalance();
+        loanOneBalance(loanOneInterestServiced, loanOneInterestComponded,
+            balanceOfLoanOne, dailyRateOfLoanOne, totalInterestCharged,
+            totalInterestDue, totalInterestPaid, totalInterestNotDue);
+        loanTwoBalance(loanTwoInterestServiced, loanTwoInterestCompounded,
+            balanceOfLoanTwo, dailyRateOfLoanTwo, totalInterestCharged,
+            totalInterestDue, totalInterestPaid, totalInterestNotDue);
         nonUtilizationInterest();
 
         // on repayment date
@@ -200,32 +194,40 @@ export function otherFees( OtherFeesAddedToLoan: String,
     }
 }
 // calculate loan type one balance
-export function loanOneBalance() {
+export function loanOneBalance(loanOneInterestServiced: String, loanOneInterestComponded: String,
+    balanceOfLoanOne: number, dailyRateOfLoanOne: number, totalInterestCharged: number,
+    totalInterestDue:number, totalInterestPaid:number, totalInterestNotDue:number  ) {
 
     dailyOneInterest = balanceOfLoanOne * dailyRateOfLoanOne
 
     if (loanOneInterestServiced === "yes") {
-        totalInterestCharged = totalInterestCharged + dailyOneInterest
-        totalInterestDue = totalInterestDue + dailyOneInterest
-        totalInterestPaid = totalInterestPaid + dailyOneInterest
-        totalInterestOutstanding = totalInterestOutstanding + dailyOneInterest
+        totalInterestCharged +=dailyOneInterest
+        totalInterestDue += dailyOneInterest
+        totalInterestPaid += dailyOneInterest
+        totalInterestOutstanding += dailyOneInterest
+        return totalInterestCharged;
     } else if (loanOneInterestServiced === "no") {
         if (loanOneInterestComponded === "yes") {
-            totalInterestCharged = totalInterestCharged + dailyOneInterest
-            totalInterestDue = totalInterestDue + dailyOneInterest
-            totalInterestPaid = totalInterestPaid + dailyOneInterest
-            balanceOfLoanOne = balanceOfLoanOne + dailyOneInterest
+            totalInterestCharged += dailyOneInterest
+            totalInterestDue +=dailyOneInterest
+            totalInterestPaid += dailyOneInterest
+            balanceOfLoanOne += dailyOneInterest
+            return balanceOfLoanOne;
         } else if (loanOneInterestComponded === "no") {
-            totalInterestCharged = totalInterestCharged + dailyOneInterest
-            totalInterestNotDue = totalInterestNotDue + dailyOneInterest
-            totalInterestOutstanding = totalInterestOutstanding + dailyOneInterest
+            totalInterestCharged += dailyOneInterest
+            totalInterestNotDue += dailyOneInterest
+            totalInterestOutstanding += dailyOneInterest
+            return totalInterestCharged;
 
         }
     }
+    return dailyOneInterest;
 }
 
 // calculate loan type two balance
-export function loanTwoBalance() {
+export function loanTwoBalance(loanTwoInterestServiced: String, loanTwoInterestCompounded: String,
+    balanceOfLoanTwo: number, dailyRateOfLoanTwo: number, totalInterestCharged: number,
+    totalInterestDue:number, totalInterestPaid:number, totalInterestNotDue:number) {
     dailyTwoInterest = balanceOfLoanTwo * dailyRateOfLoanTwo
 
     if (loanTwoInterestServiced === "yes") {
