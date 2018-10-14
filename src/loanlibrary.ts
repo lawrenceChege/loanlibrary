@@ -235,19 +235,22 @@ export function loanTwoBalance(loanTwoInterestServiced: String, loanTwoInterestC
         totalInterestDue = totalInterestDue + dailyTwoInterest
         totalInterestPaid = totalInterestPaid + dailyTwoInterest
         totalInterestOutstanding = totalInterestOutstanding + dailyTwoInterest
+        return totalInterestCharged;
     } else if (loanTwoInterestServiced === "no") {
         if (loanTwoInterestCompounded === "yes") {
             totalInterestCharged = totalInterestCharged + dailyTwoInterest
             totalInterestDue = totalInterestDue + dailyTwoInterest
             totalInterestPaid = totalInterestPaid + dailyTwoInterest
             balanceOfLoanTwo = balanceOfLoanTwo + dailyTwoInterest
+            return balanceOfLoanTwo;
         } else if (loanTwoInterestCompounded === "no") {
             totalInterestCharged = totalInterestCharged + dailyTwoInterest
             totalInterestNotDue = totalInterestNotDue + dailyTwoInterest
             totalInterestOutstanding = totalInterestOutstanding + dailyTwoInterest
-
+            return totalInterestCharged;
         }
     }
+    return dailyTwoInterest;
 }
 
 // calculate non utilization interest

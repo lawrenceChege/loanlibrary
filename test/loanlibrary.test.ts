@@ -150,35 +150,18 @@ describe('loan one Balance', () => {
   });
 
 });
-// // test for total interest charged after daily interest for loan one is added
-// describe('loan one Balance', () => {
 
-//   it('should be able to update the total interest charged Amount ', () => {
-//     loanOneBalance();
-//     assert.equal(totalInterestCharged, 2000);
-//   });
+// Test for balance of loan two
+describe('loan Two Balance', () => {
 
-// });
+  it('should be able to update the daily interest Amount ', () => {
+    let dailyTwoInt = loanTwoBalance(loanTwoInterestServiced, loanTwoInterestCompounded,
+      balanceOfLoanTwo, dailyRateOfLoanTwo, totalInterestCharged,
+      totalInterestDue, totalInterestPaid, totalInterestNotDue);
+    assert.equal(dailyTwoInt, 0);
+  });
 
-// // Test for balance of loan one after daily interest is added
-// describe('loan one Balance', () => {
-
-//   it('should be able to update the balance of loan one Amount ', () => {
-//     loanOneBalance();
-//     assert.equal(balanceOfLoanOne, 2000);
-//   });
-
-// });
-
-// // Test for balance of loan two
-// describe('loan Two Balance', () => {
-
-//   it('should be able to update the daily interest Amount ', () => {
-//     loanTwoBalance();
-//     assert.equal(dailyTwoInterest, 2000);
-//   });
-
-// });
+});
 // // test for total interest charged after daily interest for loan two is added
 // describe('loan Two Balance', () => {
 
