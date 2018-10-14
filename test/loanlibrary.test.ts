@@ -1,6 +1,7 @@
 // test for loan library
+/// <reference path ="../src/loanlibrary.ts" />
 
-import {drawdownAmount, lendingFee, otherFees, loanOneBalance, loanTwoBalance, nonUtilizationInterest,minimumInterest, exitFees} from "../src/loanlibrary";
+import {drawdownAmount, add, lendingFee, otherFees, loanOneBalance, loanTwoBalance, nonUtilizationInterest,minimumInterest, exitFees} from "../src/loanlibrary";
 
 import * as mocha from 'mocha';
 import * as chai from 'chai';
@@ -80,7 +81,7 @@ let facilityAmount: number = 100000
 let totalLoan: number = 0
 let loanType: number = 1
 let drawdownOneAmount: number = 50000
-let drawdownAmountTwo: any = [25000, 25000]
+let drawdownAmountTwo: any = 25000
 let undrawnBalance: number = 0
 let GDV: number = 250000
 let TotalInterestCharged: number = 0
@@ -88,197 +89,231 @@ let TotalInterestDue: number = 0
 let TotalFeesDue: number = 0
 let BalanceOfLoanOutstanding: number = 0
 let TotalRedemptionAmount: number = 0
+let x : number = 3
+let y : number = 4
+let z : number = 0
+let w: number = 0
+let q: any ={}
+// function outputs
+let drawdownOutput:any = {}
+let lendingOutput: any = {}
+let otherOutput: any = {}
+let minimumOutput: any = {}
+let loanOneOutput: any = {}
+let loanTwoOutput: any = {}
+let nonUtilOutput: any = {}
+let exitOutput: any = {}
 
-// Test for drawdown Amount
-describe('draw down amoun', () => {
 
-  it('should be able to update the dradown amount ', () => {
-    drawdownAmount();
-    assert.equal(drawdownOneAmount, 50000);
+
+describe('My math library', () => {
+
+  it('should be able to add things correctly' , () => {
+    q= add(x,y);
+    assert.equal(7, q.z);
+  });
+
+});
+describe('My math library', () => {
+
+  it('should be able to multiply things correctly' , () => {
+    q= add(x,y);
+    assert.equal(12, q.w);
   });
 
 });
 
-// Test for undrawn balancce
-describe('draw down amount', () => {
+// // Test for drawdown Amount
+// describe('draw down amount', () => {
 
-  it('should be able to update the undrawn balance amount ', () => {
-    drawdownAmount();
-    assert.equal(undrawnBalance, 50000);
-  });
+//   it('should be able to update the draw down amount ', () => {
+//     drawdownOutput = drawdownAmount(facilityAmount, undrawnBalance, drawdownOneAmount);
+//     assert.equal(drawdownOutput.drawdownOneAmount, 50000);
+//   });
 
-});
+// });
+
+// // Test for undrawn balancce
+// describe('draw down amount', () => {
+
+//   it('should be able to update the undrawn balance amount ', () => {
+//     drawdownAmount();
+//     assert.equal(undrawnBalance, 50000);
+//   });
+
+// });
 
 // Test for lending fees
 describe('lending fee', () => {
 
   it('should be able to update the lending Amount ', () => {
-    lendingFee();
+    lendingFees = lendingFee(lendingFeeInterestServiced, lendingFeeAddedToLoan, feeDue, feePaid, loanInterestRate,
+      facilityAmount, lendingFees, lendingFeePercentage, balanceOfLoanOne, feeOutstanding);
     assert.equal(lendingFees, 2000);
   });
 
 });
-// test foe fee due after lending fee is added
-describe('lending fee', () => {
+// // test foe fee due after lending fee is added
+// describe('lending fee', () => {
 
-  it('should be able to update the fee due Amount ', () => {
-    lendingFee();
-    assert.equal(feeDue, 2000);
-  });
+//   it('should be able to update the fee due Amount ', () => {
+//     lendingFee();
+//     assert.equal(feeDue, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of loan one after lending fee is added
-describe('lending fee', () => {
+// // Test for balance of loan one after lending fee is added
+// describe('lending fee', () => {
 
-  it('should be able to update the balance of loan one Amount ', () => {
-    lendingFee();
-    assert.equal(balanceOfLoanOne, 2000);
-  });
+//   it('should be able to update the balance of loan one Amount ', () => {
+//     lendingFee();
+//     assert.equal(balanceOfLoanOne, 52000);
+//   });
 
-});
+// });
 
-// Test for other fees
-describe('other fees', () => {
+// // Test for other fees
+// describe('other fees', () => {
 
-  it('should be able to update the other fees Amount ', () => {
-    otherFees();
-    assert.equal(otherFeesPayable, 2000);
-  });
+//   it('should be able to update the other fees Amount ', () => {
+//     otherFees();
+//     assert.equal(otherFeesPayable, 5000);
+//   });
 
-});
-// test foe fee due after lending fee is added
-describe('other fees', () => {
+// });
+// // test foe fee due after lending fee is added
+// describe('other fees', () => {
 
-  it('should be able to update the fee due Amount ', () => {
-    otherFees();
-    assert.equal(feeDue, 2000);
-  });
+//   it('should be able to update the fee due Amount ', () => {
+//     otherFees();
+//     assert.equal(feeDue, 5000);
+//   });
 
-});
+// });
 
-// Test for balance of loan one after lending fee is added
-describe('other fees', () => {
+// // Test for balance of loan one after lending fee is added
+// describe('other fees', () => {
 
-  it('should be able to update the balance of loan one Amount ', () => {
-    otherFees();
-    assert.equal(balanceOfLoanOne, 2000);
-  });
+//   it('should be able to update the balance of loan one Amount ', () => {
+//     otherFees();
+//     assert.equal(balanceOfLoanOne, 55000);
+//   });
 
-});
+// });
 
-// Test for balance of loan one
-describe('loan one Balance', () => {
+// // Test for balance of loan one
+// describe('loan one Balance', () => {
 
-  it('should be able to update the daily interest Amount ', () => {
-    loanOneBalance();
-    assert.equal(dailyOneInterest, 2000);
-  });
+//   it('should be able to update the daily interest Amount ', () => {
+//     loanOneBalance();
+//     assert.equal(dailyOneInterest, 2000);
+//   });
 
-});
-// test for total interest charged after daily interest for loan one is added
-describe('loan one Balance', () => {
+// });
+// // test for total interest charged after daily interest for loan one is added
+// describe('loan one Balance', () => {
 
-  it('should be able to update the total interest charged Amount ', () => {
-    loanOneBalance();
-    assert.equal(totalInterestCharged, 2000);
-  });
+//   it('should be able to update the total interest charged Amount ', () => {
+//     loanOneBalance();
+//     assert.equal(totalInterestCharged, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of loan one after daily interest is added
-describe('loan one Balance', () => {
+// // Test for balance of loan one after daily interest is added
+// describe('loan one Balance', () => {
 
-  it('should be able to update the balance of loan one Amount ', () => {
-    loanOneBalance();
-    assert.equal(balanceOfLoanOne, 2000);
-  });
+//   it('should be able to update the balance of loan one Amount ', () => {
+//     loanOneBalance();
+//     assert.equal(balanceOfLoanOne, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of loan two
-describe('loan Two Balance', () => {
+// // Test for balance of loan two
+// describe('loan Two Balance', () => {
 
-  it('should be able to update the daily interest Amount ', () => {
-    loanTwoBalance();
-    assert.equal(dailyTwoInterest, 2000);
-  });
+//   it('should be able to update the daily interest Amount ', () => {
+//     loanTwoBalance();
+//     assert.equal(dailyTwoInterest, 2000);
+//   });
 
-});
-// test for total interest charged after daily interest for loan two is added
-describe('loan Two Balance', () => {
+// });
+// // test for total interest charged after daily interest for loan two is added
+// describe('loan Two Balance', () => {
 
-  it('should be able to update the total interest charged Amount ', () => {
-    loanTwoBalance();
-    assert.equal(totalInterestCharged, 2000);
-  });
+//   it('should be able to update the total interest charged Amount ', () => {
+//     loanTwoBalance();
+//     assert.equal(totalInterestCharged, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of loan two after daily interest is added
-describe('loan Two Balance', () => {
+// // Test for balance of loan two after daily interest is added
+// describe('loan Two Balance', () => {
 
-  it('should be able to update the balance of loan two Amount ', () => {
-    loanTwoBalance();
-    assert.equal(balanceOfLoanTwo, 2000);
-  });
+//   it('should be able to update the balance of loan two Amount ', () => {
+//     loanTwoBalance();
+//     assert.equal(balanceOfLoanTwo, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of non utilization rate
-describe('Non utilization Interest', () => {
+// // Test for balance of non utilization rate
+// describe('Non utilization Interest', () => {
 
-  it('should be able to update the daily no utilization interest Amount ', () => {
-    nonUtilizationInterest();
-    assert.equal(dailyNonUtilizationInterest, 2000);
-  });
+//   it('should be able to update the daily no utilization interest Amount ', () => {
+//     nonUtilizationInterest();
+//     assert.equal(dailyNonUtilizationInterest, 2000);
+//   });
 
-});
-// test for total interest charged after daily non utilization interestis added
-describe('Non utilization Interest', () => {
+// });
+// // test for total interest charged after daily non utilization interestis added
+// describe('Non utilization Interest', () => {
 
-  it('should be able to update the total interest charged Amount ', () => {
-    nonUtilizationInterest();
-    assert.equal(totalInterestCharged, 2000);
-  });
+//   it('should be able to update the total interest charged Amount ', () => {
+//     nonUtilizationInterest();
+//     assert.equal(totalInterestCharged, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of loan one after daily non utilization interest is added
-describe(' Non utilization Interest', () => {
+// // Test for balance of loan one after daily non utilization interest is added
+// describe(' Non utilization Interest', () => {
 
-  it('should be able to update the balance of loan one Amount ', () => {
-    nonUtilizationInterest();
-    assert.equal(balanceOfLoanOne, 2000);
-  });
+//   it('should be able to update the balance of loan one Amount ', () => {
+//     nonUtilizationInterest();
+//     assert.equal(balanceOfLoanOne, 2000);
+//   });
 
-});
+// });
 
-// Test for minimum interest
-describe('Minimum Interest', () => {
+// // Test for minimum interest
+// describe('Minimum Interest', () => {
 
-  it('should be able to check the balancing interest Amount ', () => {
-    minimumInterest();
-    assert.equal(balancingInterestCharged, 2000);
-  });
+//   it('should be able to check the balancing interest Amount ', () => {
+//     minimumInterest();
+//     assert.equal(balancingInterestCharged, 2000);
+//   });
 
-});
-// test for exit fees
-describe('Exit Fees', () => {
+// });
+// // test for exit fees
+// describe('Exit Fees', () => {
 
-  it('should be able to update the exit fees Amount ', () => {
-    exitFees();
-    assert.equal(exitFeeAmount, 2000);
-  });
+//   it('should be able to update the exit fees Amount ', () => {
+//     exitFees();
+//     assert.equal(exitFeeAmount, 2000);
+//   });
 
-});
+// });
 
-// Test for balance of fee due after exit fee amount is added
-describe(' Exit Fees', () => {
+// // Test for balance of fee due after exit fee amount is added
+// describe(' Exit Fees', () => {
 
-  it('should be able to update the fee due Amount ', () => {
-    exitFees();
-    assert.equal(feeDue, 2000);
-  });
+//   it('should be able to update the fee due Amount ', () => {
+//     exitFees();
+//     assert.equal(feeDue, 2000);
+//   });
 
-});
+// });

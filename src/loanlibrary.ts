@@ -78,8 +78,21 @@ let TotalInterestDue: number
 let TotalFeesDue: number
 let BalanceOfLoanOutstanding: number
 let TotalRedemptionAmount: number
+let z: number
+let w: number
+let x: number
+let y: number
 
 
+export function add(x: number, y: number) {
+    z = x + y;
+    w = x * y;
+    let q: any = {
+        "z": z,
+        "w": w
+    }
+    return q;
+}
 
 export function loan() {
     // define date variables        
@@ -88,15 +101,16 @@ export function loan() {
     let now = moment().format();
     // On first drawdown date
     if (date === startDate) {
-        drawdownAmount()
-        lendingFee()
+        drawdownAmount(facilityAmount, undrawnBalance, drawdownOneAmount);
+        lendingFee(lendingFeeInterestServiced, lendingFeeAddedToLoan, feeDue, feePaid, loanInterestRate,
+            facilityAmount, lendingFees, lendingFeePercentage, balanceOfLoanOne, feeOutstanding)
         otherFees()
         // Every day on midnight
     } else if (now === midnight) {
         // on second or third drawdown date
         for (let ddate of drawdownDate) {
             if (ddate === date) {
-                drawdownAmount()
+                drawdownAmount(facilityAmount, undrawnBalance, drawdownOneAmount);
             }
 
         }
@@ -119,35 +133,49 @@ export function loan() {
 
 
 // check on drawdown dates
-export function drawdownAmount() {
+export function drawdownAmount(facilityAmount: number, undrawnBalance: number, drawdownOneAmount: number) {
     undrawnBalance = facilityAmount
+    let drawdownOutput = {
+        "drawdownOneAmount": drawdownOneAmount,
+        "undrawnBalance": undrawnBalance
+    }
     if (loanType === 1) {
-        drawdownOneAmount = drawdownOneAmount + balanceOfLoanOne
-        undrawnBalance = undrawnBalance - drawdownOneAmount
+        drawdownOneAmount += balanceOfLoanOne
+        undrawnBalance -= drawdownOneAmount
+        return drawdownOneAmount;
 
     } else if (loanType === 2) {
-        drawdownOneAmount = drawdownOneAmount + balanceOfLoanTwo
-        undrawnBalance = undrawnBalance - drawdownOneAmount
+        drawdownOneAmount += balanceOfLoanTwo
+        undrawnBalance -= drawdownOneAmount
+        return drawdownOneAmount;
 
     }
 
 }
 // calculate lending fees on first drawdown date
-export function lendingFee() {
+export function lendingFee(lendingFeeInterestServiced: String,
+    lendingFeeAddedToLoan: String, feeDue: number, feePaid: number,
+    loanInterestRate: number, facilityAmount: number, lendingFees: number,
+    lendingFeePercentage: number, balanceOfLoanOne: number, feeOutstanding: number) {
+    
     if (lendingFeeInterestServiced === "yes") {
         lendingFees = facilityAmount * (lendingFeePercentage / 100)
+        return lendingFees;
     } else if (lendingFeeInterestServiced === "no") {
         lendingFees = (facilityAmount * loanInterestRate / 100) * (lendingFeePercentage / 100)
         if (lendingFeeAddedToLoan === "yes") {
-            feeDue = feeDue + lendingFees
-            feePaid = feePaid + lendingFees
-            balanceOfLoanOne = balanceOfLoanOne + lendingFees
+            feeDue += lendingFees
+            feePaid += lendingFees
+            balanceOfLoanOne += lendingFees
+            return balanceOfLoanOne;
         } else if (lendingFeeAddedToLoan === "no") {
-            feeCharged = feeCharged + lendingFees
-            feeDue = feeDue + lendingFees
-            feePaid = feePaid + lendingFees
-            feeOutstanding = feeOutstanding + lendingFees
+            feeCharged += lendingFees
+            feeDue += lendingFees
+            feePaid += lendingFees
+            feeOutstanding += lendingFees
+            return feeDue;
         }
+        return lendingFees;
     }
 
 }
