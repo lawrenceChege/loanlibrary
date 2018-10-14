@@ -147,41 +147,22 @@ describe('My math library', () => {
 describe('lending fee', () => {
 
   it('should be able to update the lending Amount ', () => {
-    lendingFees = lendingFee(lendingFeeInterestServiced, lendingFeeAddedToLoan, feeDue, feePaid, loanInterestRate,
+    let lend = lendingFee(lendingFeeInterestServiced, lendingFeeAddedToLoan, feeDue, feePaid, loanInterestRate,
       facilityAmount, lendingFees, lendingFeePercentage, balanceOfLoanOne, feeOutstanding);
-    assert.equal(lendingFees, 2000);
+    assert.equal(lend, 2000);
   });
 
 });
-// // test foe fee due after lending fee is added
-// describe('lending fee', () => {
 
-//   it('should be able to update the fee due Amount ', () => {
-//     lendingFee();
-//     assert.equal(feeDue, 2000);
-//   });
+// Test for other fees
+describe('other fees', () => {
 
-// });
+  it('should be able to update the other fees Amount ', () => {
+    let bal = otherFees(OtherFeesAddedToLoan,feeDue, balanceOfLoanOne, feeCharged, feeOutstanding, feePaid, otherFeesPayable);
+    assert.equal(bal, 5000);
+  });
 
-// // Test for balance of loan one after lending fee is added
-// describe('lending fee', () => {
-
-//   it('should be able to update the balance of loan one Amount ', () => {
-//     lendingFee();
-//     assert.equal(balanceOfLoanOne, 52000);
-//   });
-
-// });
-
-// // Test for other fees
-// describe('other fees', () => {
-
-//   it('should be able to update the other fees Amount ', () => {
-//     otherFees();
-//     assert.equal(otherFeesPayable, 5000);
-//   });
-
-// });
+});
 // // test foe fee due after lending fee is added
 // describe('other fees', () => {
 

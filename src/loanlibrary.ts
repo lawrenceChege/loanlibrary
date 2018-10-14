@@ -103,8 +103,8 @@ export function loan() {
     if (date === startDate) {
         drawdownAmount(facilityAmount, undrawnBalance, drawdownOneAmount);
         lendingFee(lendingFeeInterestServiced, lendingFeeAddedToLoan, feeDue, feePaid, loanInterestRate,
-            facilityAmount, lendingFees, lendingFeePercentage, balanceOfLoanOne, feeOutstanding)
-        otherFees()
+            facilityAmount, lendingFees, lendingFeePercentage, balanceOfLoanOne, feeOutstanding);
+        otherFees(OtherFeesAddedToLoan, feeDue, balanceOfLoanOne, feeCharged, feeOutstanding, feePaid, otherFeesPayable);
         // Every day on midnight
     } else if (now === midnight) {
         // on second or third drawdown date
@@ -115,14 +115,14 @@ export function loan() {
 
         }
         // for every other midnight
-        loanOneBalance()
-        loanTwoBalance()
-        nonUtilizationInterest()
+        loanOneBalance();
+        loanTwoBalance();
+        nonUtilizationInterest();
 
         // on repayment date
     } else if (date === repaymentDate) {
-        minimumInterest()
-        exitFees()
+        minimumInterest();
+        exitFees();
         TotalInterestCharged = totalInterestCharged + balancingInterestDue
         TotalInterestDue = totalInterestDue
         BalanceOfLoanOutstanding = balanceOfLoanOne + balanceOfLoanTwo
@@ -181,16 +181,21 @@ export function lendingFee(lendingFeeInterestServiced: String,
 }
 
 // calculate other fees on first drawdown date
-export function otherFees() {
+export function otherFees( OtherFeesAddedToLoan: String,
+    balanceOfLoanOne: number, feeCharged :number, feeOutstanding: number,
+    feePaid: number,feeDue : number, otherFeesPayable: number) {
     if (OtherFeesAddedToLoan === "yes") {
         feeDue = feeDue + otherFeesPayable
-        feePaid = feePaid + otherFeesPayable
-        balanceOfLoanOne = balanceOfLoanOne + otherFeesPayable
+        feePaid += otherFeesPayable
+        balanceOfLoanOne += otherFeesPayable
+        console.log(balanceOfLoanOne)
+        return balanceOfLoanOne;
     } else if (OtherFeesAddedToLoan === "no") {
-        feeDue = feeDue + otherFeesPayable
-        feePaid = feePaid + otherFeesPayable
-        feeOutstanding = feeOutstanding + otherFeesPayable
-        feeCharged = feeCharged + otherFeesPayable
+        feeDue += otherFeesPayable
+        feePaid += otherFeesPayable
+        feeOutstanding += otherFeesPayable
+        feeCharged += otherFeesPayable
+        return feeDue;
 
     }
 }
