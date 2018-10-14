@@ -135,10 +135,6 @@ export function loan() {
 // check on drawdown dates
 export function drawdownAmount(facilityAmount: number, undrawnBalance: number, drawdownOneAmount: number) {
     undrawnBalance = facilityAmount
-    let drawdownOutput = {
-        "drawdownOneAmount": drawdownOneAmount,
-        "undrawnBalance": undrawnBalance
-    }
     if (loanType === 1) {
         drawdownOneAmount += balanceOfLoanOne
         undrawnBalance -= drawdownOneAmount

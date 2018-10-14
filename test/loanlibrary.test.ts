@@ -108,15 +108,7 @@ let exitOutput: any = {}
 
 
 
-// // Test for drawdown Amount
-// describe('draw down amount', () => {
 
-//   it('should be able to update the draw down amount ', () => {
-//     drawdownOutput = drawdownAmount(facilityAmount, undrawnBalance, drawdownOneAmount);
-//     assert.equal(drawdownOutput.drawdownOneAmount, 50000);
-//   });
-
-// });
 
 // Test for lending fees
 describe('lending fee', () => {
