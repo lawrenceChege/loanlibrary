@@ -103,7 +103,7 @@ let BalanceOfLoanOutstanding: number = 0
 let TotalRedemptionAmount: number = 0
 
 // Test for drawdown Amount
-describe('loanlibrary', () => {
+describe('draw down amoun', () => {
 
   it('should be able to update the dradown amount ', () => {
     drawdownAmount();
@@ -113,7 +113,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for undrawn balancce
-describe('loanlibrary', () => {
+describe('draw down amount', () => {
 
   it('should be able to update the undrawn balance amount ', () => {
     drawdownAmount();
@@ -123,7 +123,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for lending fees
-describe('loanlibrary', () => {
+describe('lending fee', () => {
 
   it('should be able to update the lending Amount ', () => {
     lendingFee();
@@ -132,7 +132,7 @@ describe('loanlibrary', () => {
 
 });
 // test foe fee due after lending fee is added
-describe('loanlibrary', () => {
+describe('lending fee', () => {
 
   it('should be able to update the fee due Amount ', () => {
     lendingFee();
@@ -142,7 +142,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan one after lending fee is added
-describe('loanlibrary', () => {
+describe('lending fee', () => {
 
   it('should be able to update the balance of loan one Amount ', () => {
     lendingFee();
@@ -152,7 +152,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for other fees
-describe('loanlibrary', () => {
+describe('other fees', () => {
 
   it('should be able to update the other fees Amount ', () => {
     otherFees();
@@ -161,7 +161,7 @@ describe('loanlibrary', () => {
 
 });
 // test foe fee due after lending fee is added
-describe('loanlibrary', () => {
+describe('other fees', () => {
 
   it('should be able to update the fee due Amount ', () => {
     otherFees();
@@ -171,7 +171,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan one after lending fee is added
-describe('loanlibrary', () => {
+describe('other fees', () => {
 
   it('should be able to update the balance of loan one Amount ', () => {
     otherFees();
@@ -181,7 +181,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan one
-describe('loanlibrary', () => {
+describe('loan one Balance', () => {
 
   it('should be able to update the daily interest Amount ', () => {
     loanOneBalance();
@@ -190,7 +190,7 @@ describe('loanlibrary', () => {
 
 });
 // test for total interest charged after daily interest for loan one is added
-describe('loanlibrary', () => {
+describe('loan one Balance', () => {
 
   it('should be able to update the total interest charged Amount ', () => {
     loanOneBalance();
@@ -200,7 +200,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan one after daily interest is added
-describe('loanlibrary', () => {
+describe('loan one Balance', () => {
 
   it('should be able to update the balance of loan one Amount ', () => {
     loanOneBalance();
@@ -210,7 +210,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan two
-describe('loanlibrary', () => {
+describe('loan Two Balance', () => {
 
   it('should be able to update the daily interest Amount ', () => {
     loanTwoBalance();
@@ -219,7 +219,7 @@ describe('loanlibrary', () => {
 
 });
 // test for total interest charged after daily interest for loan two is added
-describe('loanlibrary', () => {
+describe('loan Two Balance', () => {
 
   it('should be able to update the total interest charged Amount ', () => {
     loanTwoBalance();
@@ -229,17 +229,17 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan two after daily interest is added
-describe('loanlibrary', () => {
+describe('loan Two Balance', () => {
 
   it('should be able to update the balance of loan two Amount ', () => {
-    loanOneBalance();
+    loanTwoBalance();
     assert.equal(balanceOfLoanTwo, 2000);
   });
 
 });
 
 // Test for balance of non utilization rate
-describe('loanlibrary', () => {
+describe('Non utilization Interest', () => {
 
   it('should be able to update the daily no utilization interest Amount ', () => {
     nonUtilizationInterest();
@@ -248,7 +248,7 @@ describe('loanlibrary', () => {
 
 });
 // test for total interest charged after daily non utilization interestis added
-describe('loanlibrary', () => {
+describe('Non utilization Interest', () => {
 
   it('should be able to update the total interest charged Amount ', () => {
     nonUtilizationInterest();
@@ -258,7 +258,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of loan one after daily non utilization interest is added
-describe('loanlibrary', () => {
+describe(' Non utilization Interest', () => {
 
   it('should be able to update the balance of loan one Amount ', () => {
     nonUtilizationInterest();
@@ -268,7 +268,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for minimum interest
-describe('loanlibrary', () => {
+describe('Minimum Interest', () => {
 
   it('should be able to check the balancing interest Amount ', () => {
     minimumInterest();
@@ -277,7 +277,7 @@ describe('loanlibrary', () => {
 
 });
 // test for exit fees
-describe('loanlibrary', () => {
+describe('Exit Fees', () => {
 
   it('should be able to update the exit fees Amount ', () => {
     exitFees();
@@ -287,7 +287,7 @@ describe('loanlibrary', () => {
 });
 
 // Test for balance of fee due after exit fee amount is added
-describe('loanlibrary', () => {
+describe(' Exit Fees', () => {
 
   it('should be able to update the fee due Amount ', () => {
     exitFees();
