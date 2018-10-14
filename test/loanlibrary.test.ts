@@ -162,55 +162,18 @@ describe('loan Two Balance', () => {
   });
 
 });
-// // test for total interest charged after daily interest for loan two is added
-// describe('loan Two Balance', () => {
+// Test for balance of non utilization rate
+describe('Non utilization Interest', () => {
 
-//   it('should be able to update the total interest charged Amount ', () => {
-//     loanTwoBalance();
-//     assert.equal(totalInterestCharged, 2000);
-//   });
+  it('should be able to update the daily no utilization interest Amount ', () => {
+    let nonUtil = nonUtilizationInterest(nonUtilizationInterestServiced, nonUtilizationInterestCompounded,
+      dailyNonUtilizationRate, totalInterestCharged,
+     balanceOfLoanOne,undrawnBalance,
+     totalInterestDue, totalInterestPaid, totalInterestNotDue);
+    assert.equal(nonUtil, 0);
+  });
 
-// });
-
-// // Test for balance of loan two after daily interest is added
-// describe('loan Two Balance', () => {
-
-//   it('should be able to update the balance of loan two Amount ', () => {
-//     loanTwoBalance();
-//     assert.equal(balanceOfLoanTwo, 2000);
-//   });
-
-// });
-
-// // Test for balance of non utilization rate
-// describe('Non utilization Interest', () => {
-
-//   it('should be able to update the daily no utilization interest Amount ', () => {
-//     nonUtilizationInterest();
-//     assert.equal(dailyNonUtilizationInterest, 2000);
-//   });
-
-// });
-// // test for total interest charged after daily non utilization interestis added
-// describe('Non utilization Interest', () => {
-
-//   it('should be able to update the total interest charged Amount ', () => {
-//     nonUtilizationInterest();
-//     assert.equal(totalInterestCharged, 2000);
-//   });
-
-// });
-
-// // Test for balance of loan one after daily non utilization interest is added
-// describe(' Non utilization Interest', () => {
-
-//   it('should be able to update the balance of loan one Amount ', () => {
-//     nonUtilizationInterest();
-//     assert.equal(balanceOfLoanOne, 2000);
-//   });
-
-// });
-
+});
 // // Test for minimum interest
 // describe('Minimum Interest', () => {
 

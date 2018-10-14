@@ -111,7 +111,10 @@ export function loan() {
         loanTwoBalance(loanTwoInterestServiced, loanTwoInterestCompounded,
             balanceOfLoanTwo, dailyRateOfLoanTwo, totalInterestCharged,
             totalInterestDue, totalInterestPaid, totalInterestNotDue);
-        nonUtilizationInterest();
+        nonUtilizationInterest(nonUtilizationInterestServiced, nonUtilizationInterestCompounded,
+            dailyNonUtilizationRate, totalInterestCharged,
+           balanceOfLoanOne,undrawnBalance,
+           totalInterestDue, totalInterestPaid, totalInterestNotDue);
 
         // on repayment date
     } else if (date === repaymentDate) {
@@ -254,26 +257,34 @@ export function loanTwoBalance(loanTwoInterestServiced: String, loanTwoInterestC
 }
 
 // calculate non utilization interest
-export function nonUtilizationInterest() {
+export function nonUtilizationInterest( nonUtilizationInterestServiced: String, nonUtilizationInterestCompounded: String,
+     dailyNonUtilizationRate: number, totalInterestCharged: number,
+    balanceOfLoanOne: number,undrawnBalance: number,
+    totalInterestDue:number, totalInterestPaid:number, totalInterestNotDue:number,) {
+
     dailyNonUtilizationInterest = undrawnBalance * dailyNonUtilizationRate
+
     if (nonUtilizationInterestServiced === "yes") {
         totalInterestCharged = totalInterestCharged + dailyNonUtilizationInterest
         totalInterestDue = totalInterestDue + dailyNonUtilizationInterest
         totalInterestPaid = totalInterestPaid + dailyNonUtilizationInterest
         totalInterestOutstanding = totalInterestOutstanding + dailyNonUtilizationInterest
+        return totalInterestCharged
     } else if (nonUtilizationInterestServiced === "no") {
         if (nonUtilizationInterestCompounded === "yes") {
             totalInterestCharged = totalInterestCharged + dailyNonUtilizationInterest
             totalInterestDue = totalInterestDue + dailyNonUtilizationInterest
             totalInterestPaid = totalInterestPaid + dailyNonUtilizationInterest
-            balanceOfLoanOne = balanceOfLoanTwo + dailyNonUtilizationInterest
+            balanceOfLoanOne = balanceOfLoanOne + dailyNonUtilizationInterest
+            return balanceOfLoanOne;
         } else if (nonUtilizationInterestCompounded === "no") {
             totalInterestCharged = totalInterestCharged + dailyNonUtilizationInterest
             totalInterestNotDue = totalInterestNotDue + dailyNonUtilizationInterest
             totalInterestOutstanding = totalInterestOutstanding + dailyNonUtilizationInterest
-
+            return totalInterestCharged;
         }
     }
+    return dailyNonUtilizationInterest;
 }
 
 // check whether minimum interest is met
