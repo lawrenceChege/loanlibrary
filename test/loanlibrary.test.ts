@@ -174,31 +174,25 @@ describe('Non utilization Interest', () => {
   });
 
 });
-// // Test for minimum interest
-// describe('Minimum Interest', () => {
+// Test for minimum interest
+describe('Minimum Interest', () => {
 
-//   it('should be able to check the balancing interest Amount ', () => {
-//     minimumInterest();
-//     assert.equal(balancingInterestCharged, 2000);
-//   });
+  it('should be able to check the balancing interest Amount ', () => {
+    let balInt = minimumInterest(totalInterestCharged, minimumInterestAmount,
+      balancingInterestCharged, balancingInterestDue, balancingInterestOutstanding);
+    assert.equal(balInt, 1500);
+  });
 
-// });
-// // test for exit fees
-// describe('Exit Fees', () => {
+});
+// test for exit fees
+describe('Exit Fees', () => {
 
-//   it('should be able to update the exit fees Amount ', () => {
-//     exitFees();
-//     assert.equal(exitFeeAmount, 2000);
-//   });
+  it('should be able to update the exit fees Amount ', () => {
+    let exit = exitFees(exitFeeAmount, feeDue,
+      feeOutstanding, exitFeeGDV,  GDV,
+      exitFeeLoan, facilityAmount, totalInterestCharged);
+    assert.equal(exit, 5000);
+  });
 
-// });
+});
 
-// // Test for balance of fee due after exit fee amount is added
-// describe(' Exit Fees', () => {
-
-//   it('should be able to update the fee due Amount ', () => {
-//     exitFees();
-//     assert.equal(feeDue, 2000);
-//   });
-
-// });

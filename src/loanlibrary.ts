@@ -118,8 +118,11 @@ export function loan() {
 
         // on repayment date
     } else if (date === repaymentDate) {
-        minimumInterest();
-        exitFees();
+        minimumInterest(totalInterestCharged, minimumInterestAmount,
+            balancingInterestCharged, balancingInterestDue, balancingInterestOutstanding);
+        exitFees(exitFeeAmount, feeDue,
+            feeOutstanding, exitFeeGDV,  GDV,
+            exitFeeLoan, facilityAmount, totalInterestCharged);
         TotalInterestCharged = totalInterestCharged + balancingInterestDue
         TotalInterestDue = totalInterestDue
         BalanceOfLoanOutstanding = balanceOfLoanOne + balanceOfLoanTwo
@@ -185,7 +188,6 @@ export function otherFees( OtherFeesAddedToLoan: String,
         feeDue = feeDue + otherFeesPayable
         feePaid += otherFeesPayable
         balanceOfLoanOne += otherFeesPayable
-        console.log(balanceOfLoanOne)
         return balanceOfLoanOne;
     } else if (OtherFeesAddedToLoan === "no") {
         feeDue += otherFeesPayable
@@ -288,31 +290,36 @@ export function nonUtilizationInterest( nonUtilizationInterestServiced: String, 
 }
 
 // check whether minimum interest is met
-export function minimumInterest() {
+export function minimumInterest(totalInterestCharged: number, minimumInterestAmount: number,
+    balancingInterestCharged:number, balancingInterestDue: number, balancingInterestOutstanding:number) {
     if (totalInterestCharged !== minimumInterestAmount) {
         balancingInterestCharged = minimumInterestAmount - totalInterestCharged
         balancingInterestDue = minimumInterestAmount - totalInterestCharged
         balancingInterestOutstanding = minimumInterestAmount - totalInterestCharged
-
+        return balancingInterestCharged;
     }
 
 }
 // check for exit fees
-export function exitFees() {
+export function exitFees(exitFeeAmount:number, feeDue: number,
+    feeOutstanding: number, exitFeeGDV: number,  GDV: number,
+    exitFeeLoan: number, facilityAmount:number, totalInterestCharged: number) {
     if (exitFeeAmount !== 0) {
         feeDue = feeDue + exitFeeAmount
+        return feeDue;
     }
     if (exitFeeGDV !== 0) {
         exitFeeAmount = (exitFeeGDV / 100) * GDV
         feeDue = feeDue + exitFeeAmount
         feeOutstanding = feeOutstanding + exitFeeAmount
+        return feeDue;
     }
     if (exitFeeLoan !== 0) {
         exitFeeAmount = (facilityAmount + totalInterestCharged) * (exitFeeLoan / 100)
         feeCharged = feeCharged + exitFeeAmount
         feeDue = feeDue + exitFeeAmount
         feeOutstanding = feeOutstanding + exitFeeAmount
-
+        return feeDue;
     }
 
 }
