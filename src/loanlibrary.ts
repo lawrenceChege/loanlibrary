@@ -265,24 +265,81 @@ export class MAIN extends LOAN {
 
         }
         // for every other midnight
-        loanOneBalance(this.loanOneInterestServiced, this.loanOneInterestComponded,
-            this.balanceOfLoanOne, this.dailyRateOfLoanOne, this.totalInterestCharged,
-            this.totalInterestDue, this.totalInterestPaid, this.totalInterestNotDue);
-        loanTwoBalance(this.loanTwoInterestServiced, this.loanTwoInterestCompounded,
-            this.balanceOfLoanTwo, this.dailyRateOfLoanTwo, this.totalInterestCharged,
-            this.totalInterestDue, this.totalInterestPaid, this.totalInterestNotDue);
-        nonUtilizationInterest(this.nonUtilizationInterestServiced, this.nonUtilizationInterestCompounded,
-            this.dailyNonUtilizationRate, this.totalInterestCharged,
-            this.balanceOfLoanOne,this.undrawnBalance,
-            this.totalInterestDue, this.totalInterestPaid, this.totalInterestNotDue);
+        let loan1 = new LOANTYPEONE(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
+            this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
+            this.dailyTwoInterest,this.dailyRateOfLoanTwo,this.balanceOfLoanTwo,this.loanTwoInterestServiced,
+            this.loanTwoInterestCompounded,this.nonUtilizationInterestAmount,this.dailyNonUtilizationInterest,
+            this.dailyNonUtilizationRate,this.nonUtilizationInterestServiced ,this.nonUtilizationInterestCompounded,
+            this.interestServiced,this.loanInterestRate,this.minimumInterestAmount,this.totalInterestDue,this.totalInterestPaid ,
+            this.totalInterestCharged,this.totalInterestNotDue ,this.totalInterestOutstanding ,this.totalInterest,
+            this.balancingInterestCharged,this.balancingInterestDue,this.balancingInterestOutstanding,
+            this.lendingFees,this.lendingFeePercentage,this.lendingFeeAddedToLoan,this.lendingFeeInterestServiced,
+            this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
+            this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
+            this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+        loan1.getLoanOneBalance()
+        let loan2 = new LOANTYPETWO(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
+            this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
+            this.dailyTwoInterest,this.dailyRateOfLoanTwo,this.balanceOfLoanTwo,this.loanTwoInterestServiced,
+            this.loanTwoInterestCompounded,this.nonUtilizationInterestAmount,this.dailyNonUtilizationInterest,
+            this.dailyNonUtilizationRate,this.nonUtilizationInterestServiced ,this.nonUtilizationInterestCompounded,
+            this.interestServiced,this.loanInterestRate,this.minimumInterestAmount,this.totalInterestDue,this.totalInterestPaid ,
+            this.totalInterestCharged,this.totalInterestNotDue ,this.totalInterestOutstanding ,this.totalInterest,
+            this.balancingInterestCharged,this.balancingInterestDue,this.balancingInterestOutstanding,
+            this.lendingFees,this.lendingFeePercentage,this.lendingFeeAddedToLoan,this.lendingFeeInterestServiced,
+            this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
+            this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
+            this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+        loan2.getLoanTwoBalance()
+        let nonUtil = new NONUTIL(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
+            this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
+            this.dailyTwoInterest,this.dailyRateOfLoanTwo,this.balanceOfLoanTwo,this.loanTwoInterestServiced,
+            this.loanTwoInterestCompounded,this.nonUtilizationInterestAmount,this.dailyNonUtilizationInterest,
+            this.dailyNonUtilizationRate,this.nonUtilizationInterestServiced ,this.nonUtilizationInterestCompounded,
+            this.interestServiced,this.loanInterestRate,this.minimumInterestAmount,this.totalInterestDue,this.totalInterestPaid ,
+            this.totalInterestCharged,this.totalInterestNotDue ,this.totalInterestOutstanding ,this.totalInterest,
+            this.balancingInterestCharged,this.balancingInterestDue,this.balancingInterestOutstanding,
+            this.lendingFees,this.lendingFeePercentage,this.lendingFeeAddedToLoan,this.lendingFeeInterestServiced,
+            this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
+            this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
+            this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+        nonUtil.getNonUtilizationInterest()
 
         // on repayment date
     } else if (date === this.repaymentDate) {
-        minimumInterest(this.totalInterestCharged, this.minimumInterestAmount,
-            this.balancingInterestCharged,this.balancingInterestDue, this.balancingInterestOutstanding);
-        exitFees(this.exitFeeAmount, this.feeDue,
-            this.feeOutstanding, this.exitFeeGDV,  this.GDV,
-            this.exitFeeLoan, this.facilityAmount, this.totalInterestCharged);
+        let minInt = new MININTEREST(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
+            this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
+            this.dailyTwoInterest,this.dailyRateOfLoanTwo,this.balanceOfLoanTwo,this.loanTwoInterestServiced,
+            this.loanTwoInterestCompounded,this.nonUtilizationInterestAmount,this.dailyNonUtilizationInterest,
+            this.dailyNonUtilizationRate,this.nonUtilizationInterestServiced ,this.nonUtilizationInterestCompounded,
+            this.interestServiced,this.loanInterestRate,this.minimumInterestAmount,this.totalInterestDue,this.totalInterestPaid ,
+            this.totalInterestCharged,this.totalInterestNotDue ,this.totalInterestOutstanding ,this.totalInterest,
+            this.balancingInterestCharged,this.balancingInterestDue,this.balancingInterestOutstanding,
+            this.lendingFees,this.lendingFeePercentage,this.lendingFeeAddedToLoan,this.lendingFeeInterestServiced,
+            this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
+            this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
+            this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+        minInt.getMinimumInterest()
+        let exT = new EXITFEES(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
+            this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
+            this.dailyTwoInterest,this.dailyRateOfLoanTwo,this.balanceOfLoanTwo,this.loanTwoInterestServiced,
+            this.loanTwoInterestCompounded,this.nonUtilizationInterestAmount,this.dailyNonUtilizationInterest,
+            this.dailyNonUtilizationRate,this.nonUtilizationInterestServiced ,this.nonUtilizationInterestCompounded,
+            this.interestServiced,this.loanInterestRate,this.minimumInterestAmount,this.totalInterestDue,this.totalInterestPaid ,
+            this.totalInterestCharged,this.totalInterestNotDue ,this.totalInterestOutstanding ,this.totalInterest,
+            this.balancingInterestCharged,this.balancingInterestDue,this.balancingInterestOutstanding,
+            this.lendingFees,this.lendingFeePercentage,this.lendingFeeAddedToLoan,this.lendingFeeInterestServiced,
+            this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
+            this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
+            this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+        exT.getExitFees()
+
+
             this.TotalInterestCharged = this.totalInterestCharged + this.balancingInterestDue
             this.TotalInterestDue = this.totalInterestDue
             this.BalanceOfLoanOutstanding = this.balanceOfLoanOne + this.balanceOfLoanTwo
@@ -358,128 +415,127 @@ export class OTHERFEES extends LOAN{
 
     }
 }
- calculate loan type one balance
-export function loanOneBalance(loanOneInterestServiced: String, loanOneInterestComponded: String,
-    balanceOfLoanOne: number, dailyRateOfLoanOne: number, totalInterestCharged: number,
-    totalInterestDue:number, totalInterestPaid:number, totalInterestNotDue:number  ) {
+// calculate loan type one balance
+export class LOANTYPEONE extends LOAN {
+    getLoanOneBalance(){
+        this.dailyOneInterest = this.balanceOfLoanOne * this.dailyRateOfLoanOne
 
-    dailyOneInterest = balanceOfLoanOne * dailyRateOfLoanOne
+        if (this.loanOneInterestServiced === "yes") {
+            this.totalInterestCharged += this.dailyOneInterest
+            this.totalInterestDue += this.dailyOneInterest
+            this.totalInterestPaid += this.dailyOneInterest
+            this.totalInterestOutstanding += this.dailyOneInterest
+            return {" Total interest Charged": this.totalInterestCharged};
+        } else if (this.loanOneInterestServiced === "no") {
+            if (this.loanOneInterestComponded === "yes") {
+                this.totalInterestCharged += this.dailyOneInterest
+                this.totalInterestDue += this.dailyOneInterest
+                this.totalInterestPaid += this.dailyOneInterest
+                this.balanceOfLoanOne += this.dailyOneInterest
+                return {" Loan 1 balance": this.balanceOfLoanOne};
+            } else if (this.loanOneInterestComponded === "no") {
+                this.totalInterestCharged += this.dailyOneInterest
+                this.totalInterestNotDue += this.dailyOneInterest
+                this.totalInterestOutstanding += this.dailyOneInterest
+                return {" Total interest Charged": this.totalInterestCharged};
 
-    if (loanOneInterestServiced === "yes") {
-        totalInterestCharged +=dailyOneInterest
-        totalInterestDue += dailyOneInterest
-        totalInterestPaid += dailyOneInterest
-        totalInterestOutstanding += dailyOneInterest
-        return totalInterestCharged;
-    } else if (loanOneInterestServiced === "no") {
-        if (loanOneInterestComponded === "yes") {
-            totalInterestCharged += dailyOneInterest
-            totalInterestDue +=dailyOneInterest
-            totalInterestPaid += dailyOneInterest
-            balanceOfLoanOne += dailyOneInterest
-            return balanceOfLoanOne;
-        } else if (loanOneInterestComponded === "no") {
-            totalInterestCharged += dailyOneInterest
-            totalInterestNotDue += dailyOneInterest
-            totalInterestOutstanding += dailyOneInterest
-            return totalInterestCharged;
-
+            }
         }
+        return {"Daily Loan 1 interest": this.dailyOneInterest};
+
     }
-    return dailyOneInterest;
 }
 
 // calculate loan type two balance
-export function loanTwoBalance(loanTwoInterestServiced: String, loanTwoInterestCompounded: String,
-    balanceOfLoanTwo: number, dailyRateOfLoanTwo: number, totalInterestCharged: number,
-    totalInterestDue:number, totalInterestPaid:number, totalInterestNotDue:number) {
-    dailyTwoInterest = balanceOfLoanTwo * dailyRateOfLoanTwo
+export class LOANTYPETWO extends LOAN{
+    getLoanTwoBalance(){
+        this.dailyTwoInterest = this.balanceOfLoanTwo * this.dailyRateOfLoanTwo
 
-    if (loanTwoInterestServiced === "yes") {
-        totalInterestCharged = totalInterestCharged + dailyTwoInterest
-        totalInterestDue = totalInterestDue + dailyTwoInterest
-        totalInterestPaid = totalInterestPaid + dailyTwoInterest
-        totalInterestOutstanding = totalInterestOutstanding + dailyTwoInterest
-        return totalInterestCharged;
-    } else if (loanTwoInterestServiced === "no") {
-        if (loanTwoInterestCompounded === "yes") {
-            totalInterestCharged = totalInterestCharged + dailyTwoInterest
-            totalInterestDue = totalInterestDue + dailyTwoInterest
-            totalInterestPaid = totalInterestPaid + dailyTwoInterest
-            balanceOfLoanTwo = balanceOfLoanTwo + dailyTwoInterest
-            return balanceOfLoanTwo;
-        } else if (loanTwoInterestCompounded === "no") {
-            totalInterestCharged = totalInterestCharged + dailyTwoInterest
-            totalInterestNotDue = totalInterestNotDue + dailyTwoInterest
-            totalInterestOutstanding = totalInterestOutstanding + dailyTwoInterest
-            return totalInterestCharged;
+    if (this.loanTwoInterestServiced === "yes") {
+        this.totalInterestCharged = this.totalInterestCharged + this.dailyTwoInterest
+        this.totalInterestDue = this.totalInterestDue + this.dailyTwoInterest
+        this.totalInterestPaid = this.totalInterestPaid + this.dailyTwoInterest
+        this.totalInterestOutstanding = this.totalInterestOutstanding + this.dailyTwoInterest
+        return {" Total Interest Charged":this.totalInterestCharged};
+    } else if (this.loanTwoInterestServiced === "no") {
+        if (this.loanTwoInterestCompounded === "yes") {
+            this.totalInterestCharged = this.totalInterestCharged + this.dailyTwoInterest
+            this.totalInterestDue = this.totalInterestDue + this.dailyTwoInterest
+            this.totalInterestPaid = this.totalInterestPaid + this.dailyTwoInterest
+            this.balanceOfLoanTwo = this.balanceOfLoanTwo + this.dailyTwoInterest
+            return {" Balance of Type 2 Loan":this.balanceOfLoanTwo};
+        } else if (this.loanTwoInterestCompounded === "no") {
+            this.totalInterestCharged = this.totalInterestCharged + this.dailyTwoInterest
+            this.totalInterestNotDue = this.totalInterestNotDue + this.dailyTwoInterest
+            this.totalInterestOutstanding = this.totalInterestOutstanding + this.dailyTwoInterest
+            return {" Total Interest Charged":this.totalInterestCharged};
         }
     }
-    return dailyTwoInterest;
+    return {"Daily loan Two Interesrt": this.dailyTwoInterest};
+    }
 }
 
+
 // calculate non utilization interest
-export function nonUtilizationInterest( nonUtilizationInterestServiced: String, nonUtilizationInterestCompounded: String,
-     dailyNonUtilizationRate: number, totalInterestCharged: number,
-    balanceOfLoanOne: number,undrawnBalance: number,
-    totalInterestDue:number, totalInterestPaid:number, totalInterestNotDue:number,) {
-
-    dailyNonUtilizationInterest = undrawnBalance * dailyNonUtilizationRate
-
-    if (nonUtilizationInterestServiced === "yes") {
-        totalInterestCharged = totalInterestCharged + dailyNonUtilizationInterest
-        totalInterestDue = totalInterestDue + dailyNonUtilizationInterest
-        totalInterestPaid = totalInterestPaid + dailyNonUtilizationInterest
-        totalInterestOutstanding = totalInterestOutstanding + dailyNonUtilizationInterest
-        return totalInterestCharged
-    } else if (nonUtilizationInterestServiced === "no") {
-        if (nonUtilizationInterestCompounded === "yes") {
-            totalInterestCharged = totalInterestCharged + dailyNonUtilizationInterest
-            totalInterestDue = totalInterestDue + dailyNonUtilizationInterest
-            totalInterestPaid = totalInterestPaid + dailyNonUtilizationInterest
-            balanceOfLoanOne = balanceOfLoanOne + dailyNonUtilizationInterest
-            return balanceOfLoanOne;
-        } else if (nonUtilizationInterestCompounded === "no") {
-            totalInterestCharged = totalInterestCharged + dailyNonUtilizationInterest
-            totalInterestNotDue = totalInterestNotDue + dailyNonUtilizationInterest
-            totalInterestOutstanding = totalInterestOutstanding + dailyNonUtilizationInterest
-            return totalInterestCharged;
+export class NONUTIL extends LOAN {
+    getNonUtilizationInterest(){
+        this.dailyNonUtilizationInterest = this.undrawnBalance * this.dailyNonUtilizationRate
+    if (this.nonUtilizationInterestServiced === "yes") {
+        this.totalInterestCharged = this.totalInterestCharged + this.dailyNonUtilizationInterest
+        this.totalInterestDue = this.totalInterestDue + this.dailyNonUtilizationInterest
+        this.totalInterestPaid = this.totalInterestPaid +this. dailyNonUtilizationInterest
+        this.totalInterestOutstanding = this.totalInterestOutstanding + this.dailyNonUtilizationInterest
+        return {"Total interest charged":this.totalInterestCharged};
+    } else if (this.nonUtilizationInterestServiced === "no") {
+        if (this.nonUtilizationInterestCompounded === "yes") {
+            this.totalInterestCharged = this.totalInterestCharged + this.dailyNonUtilizationInterest
+            this.totalInterestDue = this.totalInterestDue + this.dailyNonUtilizationInterest
+            this.totalInterestPaid = this.totalInterestPaid + this.dailyNonUtilizationInterest
+            this.balanceOfLoanOne = this.balanceOfLoanOne + this.dailyNonUtilizationInterest
+            return {"Loan type 1 balance":this.balanceOfLoanOne};
+        } else if (this.nonUtilizationInterestCompounded === "no") {
+            this.totalInterestCharged = this.totalInterestCharged + this.dailyNonUtilizationInterest
+            this.totalInterestNotDue = this.totalInterestNotDue + this.dailyNonUtilizationInterest
+            this.totalInterestOutstanding = this.totalInterestOutstanding + this.dailyNonUtilizationInterest
+            return {"Total interest charged":this.totalInterestCharged};
         }
     }
-    return dailyNonUtilizationInterest;
+    return {"Daily non utilization Interest":this.dailyNonUtilizationInterest};
+    }
 }
 
 // check whether minimum interest is met
-export function minimumInterest(totalInterestCharged: number, minimumInterestAmount: number,
-    balancingInterestCharged:number, balancingInterestDue: number, balancingInterestOutstanding:number) {
-    if (totalInterestCharged !== minimumInterestAmount) {
-        balancingInterestCharged = minimumInterestAmount - totalInterestCharged
-        balancingInterestDue = minimumInterestAmount - totalInterestCharged
-        balancingInterestOutstanding = minimumInterestAmount - totalInterestCharged
-        return balancingInterestCharged;
+export class MININTEREST extends LOAN {
+    getMinimumInterest(){
+        if (this.totalInterestCharged !== this.minimumInterestAmount) {
+            this.balancingInterestCharged = this.minimumInterestAmount - this.totalInterestCharged
+            this.balancingInterestDue = this.minimumInterestAmount - this.totalInterestCharged
+            this.balancingInterestOutstanding = this.minimumInterestAmount - this.totalInterestCharged
+            return {" Balancing Interest Charged": this.balancingInterestCharged};
+        }
     }
-
 }
-// check for exit fees
-export function exitFees(exitFeeAmount:number, feeDue: number,
-    feeOutstanding: number, exitFeeGDV: number,  GDV: number,
-    exitFeeLoan: number, facilityAmount:number, totalInterestCharged: number) {
-    if (exitFeeAmount !== 0) {
-        feeDue = feeDue + exitFeeAmount
-        return feeDue;
-    }
-    if (exitFeeGDV !== 0) {
-        exitFeeAmount = (exitFeeGDV / 100) * GDV
-        feeDue = feeDue + exitFeeAmount
-        feeOutstanding = feeOutstanding + exitFeeAmount
-        return feeDue;
-    }
-    if (exitFeeLoan !== 0) {
-        exitFeeAmount = (facilityAmount + totalInterestCharged) * (exitFeeLoan / 100)
-        feeCharged = feeCharged + exitFeeAmount
-        feeDue = feeDue + exitFeeAmount
-        feeOutstanding = feeOutstanding + exitFeeAmount
-        return feeDue;
-    }
 
+// check for exit fees
+export class EXITFEES extends LOAN {
+    getExitFees(){
+        if (this.exitFeeAmount !== 0) {
+            this.feeDue = this.feeDue + this.exitFeeAmount
+            return {" Due Fees":this.feeDue};
+        }
+        if (this.exitFeeGDV !== 0) {
+            this.exitFeeAmount = (this.exitFeeGDV / 100) * this.GDV
+            this.feeDue = this.feeDue + this.exitFeeAmount
+            this.feeOutstanding = this.feeOutstanding + this.exitFeeAmount
+            return {" Due Fees":this.feeDue};
+        }
+        if (this.exitFeeLoan !== 0) {
+            this.exitFeeAmount = (this.facilityAmount + this.totalInterestCharged) * (this.exitFeeLoan / 100)
+            this.feeCharged = this.feeCharged + this.exitFeeAmount
+            this.feeDue = this.feeDue + this.exitFeeAmount
+            this.feeOutstanding = this.feeOutstanding + this.exitFeeAmount
+            return {" Due Fees":this.feeDue};
+        }
+    
+    }
 }
