@@ -1,5 +1,4 @@
-import { LOANDATA } from "../src/loanlibrary";
-
+import { LOAN } from "../src/loanlibrary";
 
 export let startDate: String = "2-Oct-2018"
 export let repaymentDate: String = "1-Dec-2018"
@@ -80,3 +79,5 @@ export let TotalInterestDue: number = 0
 export let TotalFeesDue: number = 0
 export let BalanceOfLoanOutstanding: number = 0
 export let TotalRedemptionAmount: number = 0
+
+
