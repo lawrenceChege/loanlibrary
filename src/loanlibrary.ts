@@ -2,7 +2,7 @@
 // import required libraries
 import * as moment from "moment"
 
-export interface LOANDATA{
+export interface LOANDATA {
     startDate: String
     repaymentDate: String
     drawdownDate: any
@@ -57,6 +57,10 @@ export interface LOANDATA{
     TotalFeesDue: number
     BalanceOfLoanOutstanding: number
     TotalRedemptionAmount: number
+    capitalizeLoanOnDefault: String
+    defaultAtEndOfTerm: String
+    defaultCompounded: String
+    defaultRate: number
 
 }
 
@@ -116,6 +120,10 @@ export class LOAN implements LOANDATA{
     TotalFeesDue: number
     BalanceOfLoanOutstanding: number
     TotalRedemptionAmount: number
+    capitalizeLoanOnDefault: String
+    defaultAtEndOfTerm: String
+    defaultCompounded: String
+    defaultRate: number
     constructor(startDate: String, repaymentDate: String, drawdownDate: any, dailyOneInterest: number,
         dailyRateOfLoanOne: number, balanceOfLoanOne: number, loanOneInterestServiced: String,
         loanOneInterestComponded: String, dailyTwoInterest: number, dailyRateOfLoanTwo: number,
@@ -131,7 +139,8 @@ export class LOAN implements LOANDATA{
         exitFeeAmount: number, exitFeeGDV: number, exitFeeLoan: number, facilityAmount: number,
         loanType: number, drawdownOneAmount: number, drawdownAmountTwo: number, undrawnBalance: number,
         GDV: number, TotalInterestCharged: number, TotalInterestDue: number, TotalFeesDue: number,
-        BalanceOfLoanOutstanding: number, TotalRedemptionAmount: number
+        BalanceOfLoanOutstanding: number, TotalRedemptionAmount: number, capitalizeLoanOnDefault: String,
+        defaultAtEndOfTerm: String, defaultCompounded: String, defaultRate: number,
     ){
     this.startDate = startDate
     this.repaymentDate = repaymentDate
@@ -187,6 +196,11 @@ export class LOAN implements LOANDATA{
     this.TotalFeesDue = TotalFeesDue
     this.BalanceOfLoanOutstanding = BalanceOfLoanOutstanding
     this.TotalRedemptionAmount = TotalRedemptionAmount
+    this.capitalizeLoanOnDefault = capitalizeLoanOnDefault
+    this.defaultAtEndOfTerm = defaultAtEndOfTerm
+    this.defaultCompounded = defaultCompounded
+    this.defaultRate = defaultRate
+    
     }
     
 }
@@ -212,7 +226,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         amount.getDrawdownAmount()
         let fee = new LENDINGFEE(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
             this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
@@ -226,7 +240,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount, this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         fee.getLendingFee()
         let other = new OTHERFEES (this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
             this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
@@ -240,7 +254,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         other.getOtherFees()
         // Every day on midnight
     } else if (now === midnight) {
@@ -277,7 +291,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         loan1.getLoanOneBalance()
         let loan2 = new LOANTYPETWO(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
             this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
@@ -291,7 +305,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         loan2.getLoanTwoBalance()
         let nonUtil = new NONUTIL(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
             this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
@@ -305,7 +319,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         nonUtil.getNonUtilizationInterest()
 
         // on repayment date
@@ -322,7 +336,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         minInt.getMinimumInterest()
         let exT = new EXITFEES(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
             this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
@@ -336,7 +350,7 @@ export class MAIN extends LOAN {
             this.otherFeesPayable,this.OtherFeesAddedToLoan ,this.feeCharged,this.feeDue,this.feePaid,this.feeOutstanding,
             this.exitFeeAmount,this.exitFeeGDV,this.exitFeeLoan,this.facilityAmount,this.loanType,this.drawdownOneAmount,this.drawdownAmountTwo,
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
-            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount);
+            this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
         exT.getExitFees()
 
 
