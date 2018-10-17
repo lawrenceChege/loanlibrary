@@ -1,4 +1,4 @@
-/// <reference path="../dist/types/loanlibrary.d.ts" />
+
 // import required libraries
 import * as moment from "moment"
 
