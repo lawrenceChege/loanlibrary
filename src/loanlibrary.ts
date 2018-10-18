@@ -140,7 +140,7 @@ export class LOAN implements LOANDATA{
         loanType: number, drawdownOneAmount: number, drawdownAmountTwo: number, undrawnBalance: number,
         GDV: number, TotalInterestCharged: number, TotalInterestDue: number, TotalFeesDue: number,
         BalanceOfLoanOutstanding: number, TotalRedemptionAmount: number, capitalizeLoanOnDefault: String,
-        defaultAtEndOfTerm: String, defaultCompounded: String, defaultRate: number,
+        defaultAtEndOfTerm: String, defaultCompounded: String, defaultRate: number
     ){
     this.startDate = startDate
     this.repaymentDate = repaymentDate
@@ -228,7 +228,7 @@ export class MAIN extends LOAN {
             this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
             this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,this.capitalizeLoanOnDefault,
             this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
-        amount.getDrawdownAmount()
+        amount.getDrawdownAmount(this.undrawnBalance, this.facilityAmount, this.loanType, this.balanceOfLoanOne)
         let fee = new LENDINGFEE(this.startDate, this.repaymentDate, this.drawdownDate,this.dailyOneInterest,
             this.dailyRateOfLoanOne,this.balanceOfLoanOne,this.loanOneInterestServiced,this.loanOneInterestComponded,
             this.dailyTwoInterest,this.dailyRateOfLoanTwo,this.balanceOfLoanTwo,this.loanTwoInterestServiced,
@@ -278,7 +278,7 @@ export class MAIN extends LOAN {
                     this.undrawnBalance,this.GDV,this.TotalInterestCharged,this.TotalInterestDue,this.TotalFeesDue ,
                     this.BalanceOfLoanOutstanding ,this.TotalRedemptionAmount,
                     this.capitalizeLoanOnDefault,this.defaultAtEndOfTerm ,this.defaultCompounded ,this.defaultRate);
-                amount.getDrawdownAmount()
+                amount.getDrawdownAmount(this.undrawnBalance, this.facilityAmount, this.loanType, this.balanceOfLoanOne)
             }
 
         }
@@ -372,19 +372,47 @@ export class MAIN extends LOAN {
     }
 }
 
+export interface NUMBERS {
+    x : number
+    y: number
+    z: number
+    sum: number
+
+}
+export class MATH implements NUMBERS {
+    x : number
+    y: number
+    z: number
+    sum: number
+    constructor(x : number,y: number,z: number, sum: number){
+        this.x = x
+        this.y = y
+        this.z = z
+        this.sum = sum
+    }
+
+}
+export class ADD extends MATH{
+    getSum(){
+        this.sum = this.x + this.y;
+        return this.sum
+    }
+}
 
 export class DRAWDOWN extends LOAN{
-    getDrawdownAmount (){
+    getDrawdownAmount (undrawnBalance: number, facilityAmount:number, loanType:number, balanceOfLoanOne:number){
     this.undrawnBalance = this.facilityAmount
+    // console.log(facilityAmount)
+    // console.log(this.facilityAmount)
     if (this.loanType === 1) {
         this.drawdownOneAmount += this.balanceOfLoanOne
         this.undrawnBalance -= this.drawdownOneAmount
-        return {" Draw down 1 Amount": this.drawdownOneAmount};
+        return this.drawdownOneAmount;
 
     } else if (this.loanType === 2) {
         this.drawdownOneAmount += this.balanceOfLoanTwo
         this.undrawnBalance -= this.drawdownOneAmount
-        return {" Draw down 1 Amount": this.drawdownOneAmount};
+        return this.drawdownOneAmount;
 
     }
 
@@ -397,22 +425,26 @@ export class LENDINGFEE extends LOAN {
     getLendingFee (){
         if (this.lendingFeeInterestServiced === "yes") {
             this.lendingFees = this.facilityAmount * (this.lendingFeePercentage / 100)
-            return {"Lending Fees": this.lendingFees};
+            console.log(["Lending fees", this.lendingFees])
+            return this.lendingFees;
         } else if (this.lendingFeeInterestServiced === "no") {
             this.lendingFees = (this.facilityAmount * this.loanInterestRate / 100) * (this.lendingFeePercentage / 100)
             if (this.lendingFeeAddedToLoan === "yes") {
                 this.feeDue += this.lendingFees
                 this.feePaid += this.lendingFees
                 this.balanceOfLoanOne += this.lendingFees
-                return{" Loan 1 balance": this.balanceOfLoanOne};
+                console.log(["Balance of loan 1",this.balanceOfLoanOne])
+                return this.balanceOfLoanOne;
             } else if (this.lendingFeeAddedToLoan === "no") {
                 this.feeCharged += this.lendingFees
                 this.feeDue += this.lendingFees
                 this.feePaid += this.lendingFees
                 this.feeOutstanding += this.lendingFees
-                return {" Due Fees": this.feeDue};
+                console.log([" Due fees",this.feeDue])
+                return this.feeDue;
             }
-            return {"Lending Fees": this.lendingFees};
+            console.log(["Lending fees", this.lendingFees])
+            return this.lendingFees;
         }
     
 
