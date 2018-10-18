@@ -1,6 +1,8 @@
 
 // import required libraries
 import * as moment from "moment"
+let BigNumber = require('big-number')
+
 import { EXITFEES } from "../src/exitfees";
 import { MININTEREST } from "../src/mininterest";
 import { NONUTIL } from "../src/nonutil";
@@ -371,10 +373,10 @@ export class MAIN extends LOAN {
         exT.getExitFees()
 
 
-            this.TotalInterestCharged = this.totalInterestCharged + this.balancingInterestDue
-            this.TotalInterestDue = this.totalInterestDue
-            this.BalanceOfLoanOutstanding = this.balanceOfLoanOne + this.balanceOfLoanTwo
-            this.TotalRedemptionAmount = this.BalanceOfLoanOutstanding + this.totalInterestDue + this.TotalFeesDue
+            this.TotalInterestCharged = BigNumber(this.totalInterestCharged).plus(this.balancingInterestDue)
+            this.TotalInterestDue = BigNumber(this.TotalInterestDue).plus(this.totalInterestDue)
+            this.BalanceOfLoanOutstanding = BigNumber(this.balanceOfLoanOne).plus(this.balanceOfLoanTwo)
+            this.TotalRedemptionAmount = BigNumber(this.BalanceOfLoanOutstanding).plus(this.totalInterestDue).plus(this.TotalFeesDue)
 
     }
     }
