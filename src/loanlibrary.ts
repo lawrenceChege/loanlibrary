@@ -434,13 +434,15 @@ export class OTHERFEES extends LOAN{
             this.feeDue = this.feeDue + this.otherFeesPayable
             this.feePaid += this.otherFeesPayable
             this.balanceOfLoanOne += this.otherFeesPayable
-            return {" Loan 1 balance": this.balanceOfLoanOne};
+            console.log([" Loan 1 balance after adding other fees", this.balanceOfLoanOne])
+            return  this.balanceOfLoanOne;
         } else if (this.OtherFeesAddedToLoan === "no") {
             this.feeDue += this.otherFeesPayable
             this.feePaid += this.otherFeesPayable
             this.feeOutstanding += this.otherFeesPayable
             this.feeCharged += this.otherFeesPayable
-            return {" Due Fees": this.feeDue};
+            console.log([" Due Fees", this.feeDue])
+            return  this.feeDue;
     
         }
 
