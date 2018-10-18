@@ -1,4 +1,3 @@
-import { LOAN } from "../src/loanlibrary";
 
 export let startDate: String = "2-Oct-2018"
 export let repaymentDate: String = "1-Dec-2018"
@@ -79,5 +78,11 @@ export let TotalInterestDue: number = 0
 export let TotalFeesDue: number = 0
 export let BalanceOfLoanOutstanding: number = 0
 export let TotalRedemptionAmount: number = 0
+
+export let x = 2
+export let y = 3
+export let z = 4
+export let sum =0
+
 
 
