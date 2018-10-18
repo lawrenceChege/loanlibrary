@@ -166,32 +166,33 @@ describe('loan Two Balance', () => {
 
 });
 
-// // Test for balance of non utilization rate
-// describe('Non utilization Interest', () => {
+// Test for balance of non utilization rate
+describe('Non utilization Interest', () => {
 
-//   it('should be able to update the daily no utilization interest Amount ', () => {
-//     let nonUtil = new NONUTIL(startDate, repaymentDate, drawdownDate, dailyOneInterest,
-//       dailyRateOfLoanOne, balanceOfLoanOne, loanOneInterestServiced,
-//       loanOneInterestComponded, dailyTwoInterest, dailyRateOfLoanTwo,
-//       balanceOfLoanTwo, loanTwoInterestServiced, loanTwoInterestCompounded,
-//       nonUtilizationInterestAmount, dailyNonUtilizationInterest, dailyNonUtilizationRate,
-//       nonUtilizationInterestServiced, nonUtilizationInterestCompounded, interestServiced,
-//       loanInterestRate, minimumInterestAmount, totalInterestDue, totalInterestPaid,
-//       totalInterestCharged, totalInterestNotDue, totalInterestOutstanding,
-//       totalInterest, balancingInterestCharged, balancingInterestDue,
-//       balancingInterestOutstanding, lendingFees, lendingFeePercentage,
-//       lendingFeeAddedToLoan, lendingFeeInterestServiced, otherFeesPayable,
-//       OtherFeesAddedToLoan, feeCharged, feeDue, feePaid, feeOutstanding,
-//       exitFeeAmount, exitFeeGDV, exitFeeLoan, facilityAmount,
-//       loanType, drawdownOneAmount, drawdownAmountTwo, undrawnBalance,
-//       GDV, TotalInterestCharged, TotalInterestDue, TotalFeesDue,
-//       BalanceOfLoanOutstanding, TotalRedemptionAmount, capitalizeLoanOnDefault,
-//       defaultAtEndOfTerm, defaultCompounded, defaultRate);
-//     let outnon = nonUtil.getNonUtilizationInterest()
-//     assert.equal(outnon["Daily non utilization Interest"], 0);
-//   });
+  it('should be able to update the daily no utilization interest Amount ', () => {
+    let nonUtil = new NONUTIL(startDate, repaymentDate, drawdownDate, dailyOneInterest,
+      dailyRateOfLoanOne, balanceOfLoanOne, loanOneInterestServiced,
+      loanOneInterestComponded, dailyTwoInterest, dailyRateOfLoanTwo,
+      balanceOfLoanTwo, loanTwoInterestServiced, loanTwoInterestCompounded,
+      nonUtilizationInterestAmount, dailyNonUtilizationInterest, dailyNonUtilizationRate,
+      nonUtilizationInterestServiced, nonUtilizationInterestCompounded, interestServiced,
+      loanInterestRate, minimumInterestAmount, totalInterestDue, totalInterestPaid,
+      totalInterestCharged, totalInterestNotDue, totalInterestOutstanding,
+      totalInterest, balancingInterestCharged, balancingInterestDue,
+      balancingInterestOutstanding, lendingFees, lendingFeePercentage,
+      lendingFeeAddedToLoan, lendingFeeInterestServiced, otherFeesPayable,
+      OtherFeesAddedToLoan, feeCharged, feeDue, feePaid, feeOutstanding,
+      exitFeeAmount, exitFeeGDV, exitFeeLoan, facilityAmount,
+      loanType, drawdownOneAmount, drawdownAmountTwo, undrawnBalance,
+      GDV, TotalInterestCharged, TotalInterestDue, TotalFeesDue,
+      BalanceOfLoanOutstanding, TotalRedemptionAmount, capitalizeLoanOnDefault,
+      defaultAtEndOfTerm, defaultCompounded, defaultRate);
+    let outnon = nonUtil.getNonUtilizationInterest()
+    assert.equal(outnon, 0);
+  });
 
-// });
+});
+
 // // Test for minimum interest
 // describe('Minimum Interest', () => {
 
