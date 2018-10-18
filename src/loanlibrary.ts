@@ -556,7 +556,8 @@ export class MININTEREST extends LOAN {
             this.balancingInterestCharged = this.minimumInterestAmount - this.totalInterestCharged
             this.balancingInterestDue = this.minimumInterestAmount - this.totalInterestCharged
             this.balancingInterestOutstanding = this.minimumInterestAmount - this.totalInterestCharged
-            return {" Balancing Interest Charged": this.balancingInterestCharged};
+            console.log([" Balancing Interest Charged", this.balancingInterestCharged])
+            return  this.balancingInterestCharged;
         }
     }
 }

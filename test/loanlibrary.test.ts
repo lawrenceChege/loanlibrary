@@ -193,33 +193,34 @@ describe('Non utilization Interest', () => {
 
 });
 
-// // Test for minimum interest
-// describe('Minimum Interest', () => {
+// Test for minimum interest
+describe('Minimum Interest', () => {
 
-//   it('should be able to check the balancing interest Amount ', () => {
-//     let balInt = new MININTEREST(startDate, repaymentDate, drawdownDate, dailyOneInterest,
-//       dailyRateOfLoanOne, balanceOfLoanOne, loanOneInterestServiced,
-//       loanOneInterestComponded, dailyTwoInterest, dailyRateOfLoanTwo,
-//       balanceOfLoanTwo, loanTwoInterestServiced, loanTwoInterestCompounded,
-//       nonUtilizationInterestAmount, dailyNonUtilizationInterest, dailyNonUtilizationRate,
-//       nonUtilizationInterestServiced, nonUtilizationInterestCompounded, interestServiced,
-//       loanInterestRate, minimumInterestAmount, totalInterestDue, totalInterestPaid,
-//       totalInterestCharged, totalInterestNotDue, totalInterestOutstanding,
-//       totalInterest, balancingInterestCharged, balancingInterestDue,
-//       balancingInterestOutstanding, lendingFees, lendingFeePercentage,
-//       lendingFeeAddedToLoan, lendingFeeInterestServiced, otherFeesPayable,
-//       OtherFeesAddedToLoan, feeCharged, feeDue, feePaid, feeOutstanding,
-//       exitFeeAmount, exitFeeGDV, exitFeeLoan, facilityAmount,
-//       loanType, drawdownOneAmount, drawdownAmountTwo, undrawnBalance,
-//       GDV, TotalInterestCharged, TotalInterestDue, TotalFeesDue,
-//       BalanceOfLoanOutstanding, TotalRedemptionAmount, capitalizeLoanOnDefault,
-//       defaultAtEndOfTerm, defaultCompounded, defaultRate);
+  it('should be able to check the balancing interest Amount ', () => {
+    let balInt = new MININTEREST(startDate, repaymentDate, drawdownDate, dailyOneInterest,
+      dailyRateOfLoanOne, balanceOfLoanOne, loanOneInterestServiced,
+      loanOneInterestComponded, dailyTwoInterest, dailyRateOfLoanTwo,
+      balanceOfLoanTwo, loanTwoInterestServiced, loanTwoInterestCompounded,
+      nonUtilizationInterestAmount, dailyNonUtilizationInterest, dailyNonUtilizationRate,
+      nonUtilizationInterestServiced, nonUtilizationInterestCompounded, interestServiced,
+      loanInterestRate, minimumInterestAmount, totalInterestDue, totalInterestPaid,
+      totalInterestCharged, totalInterestNotDue, totalInterestOutstanding,
+      totalInterest, balancingInterestCharged, balancingInterestDue,
+      balancingInterestOutstanding, lendingFees, lendingFeePercentage,
+      lendingFeeAddedToLoan, lendingFeeInterestServiced, otherFeesPayable,
+      OtherFeesAddedToLoan, feeCharged, feeDue, feePaid, feeOutstanding,
+      exitFeeAmount, exitFeeGDV, exitFeeLoan, facilityAmount,
+      loanType, drawdownOneAmount, drawdownAmountTwo, undrawnBalance,
+      GDV, TotalInterestCharged, TotalInterestDue, TotalFeesDue,
+      BalanceOfLoanOutstanding, TotalRedemptionAmount, capitalizeLoanOnDefault,
+      defaultAtEndOfTerm, defaultCompounded, defaultRate);
 
-//     let outbalInt = balInt.getMinimumInterest()
-//     assert.equal(outbalInt[" Balancing Interest Charged"], 1500);
-//   });
+    let outbalInt = balInt.getMinimumInterest()
+    assert.equal(outbalInt, 1500);
+  });
 
-// });
+});
+
 // // test for exit fees
 // describe('Exit Fees', () => {
 
