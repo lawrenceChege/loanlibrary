@@ -458,23 +458,27 @@ export class LOANTYPEONE extends LOAN {
             this.totalInterestDue += this.dailyOneInterest
             this.totalInterestPaid += this.dailyOneInterest
             this.totalInterestOutstanding += this.dailyOneInterest
-            return {" Total interest Charged": this.totalInterestCharged};
+            console.log([" Total interest Charged", this.totalInterestCharged])
+            return this.totalInterestCharged;
         } else if (this.loanOneInterestServiced === "no") {
             if (this.loanOneInterestComponded === "yes") {
                 this.totalInterestCharged += this.dailyOneInterest
                 this.totalInterestDue += this.dailyOneInterest
                 this.totalInterestPaid += this.dailyOneInterest
                 this.balanceOfLoanOne += this.dailyOneInterest
-                return {" Loan 1 balance": this.balanceOfLoanOne};
+                console.log([" Loan 1 balance after daily interest of loan 1", this.balanceOfLoanOne])
+                return this.balanceOfLoanOne;
             } else if (this.loanOneInterestComponded === "no") {
                 this.totalInterestCharged += this.dailyOneInterest
                 this.totalInterestNotDue += this.dailyOneInterest
                 this.totalInterestOutstanding += this.dailyOneInterest
-                return {" Total interest Charged": this.totalInterestCharged};
+                console.log([" Total interest Charged", this.totalInterestCharged])
+                return this.totalInterestCharged;
 
             }
         }
-        return {"Daily Loan 1 interest": this.dailyOneInterest};
+        console.log(["Daily Loan 1 interest", this.dailyOneInterest])
+        return this.dailyOneInterest;
 
     }
 }
