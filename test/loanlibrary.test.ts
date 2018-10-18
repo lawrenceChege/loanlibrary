@@ -221,30 +221,30 @@ describe('Minimum Interest', () => {
 
 });
 
-// // test for exit fees
-// describe('Exit Fees', () => {
+// test for exit fees
+describe('Exit Fees', () => {
 
-//   it('should be able to update the exit fees Amount ', () => {
-//     let exit = new  EXITFEES(startDate, repaymentDate, drawdownDate, dailyOneInterest,
-//       dailyRateOfLoanOne, balanceOfLoanOne, loanOneInterestServiced,
-//       loanOneInterestComponded, dailyTwoInterest, dailyRateOfLoanTwo,
-//       balanceOfLoanTwo, loanTwoInterestServiced, loanTwoInterestCompounded,
-//       nonUtilizationInterestAmount, dailyNonUtilizationInterest, dailyNonUtilizationRate,
-//       nonUtilizationInterestServiced, nonUtilizationInterestCompounded, interestServiced,
-//       loanInterestRate, minimumInterestAmount, totalInterestDue, totalInterestPaid,
-//       totalInterestCharged, totalInterestNotDue, totalInterestOutstanding,
-//       totalInterest, balancingInterestCharged, balancingInterestDue,
-//       balancingInterestOutstanding, lendingFees, lendingFeePercentage,
-//       lendingFeeAddedToLoan, lendingFeeInterestServiced, otherFeesPayable,
-//       OtherFeesAddedToLoan, feeCharged, feeDue, feePaid, feeOutstanding,
-//       exitFeeAmount, exitFeeGDV, exitFeeLoan, facilityAmount,
-//       loanType, drawdownOneAmount, drawdownAmountTwo, undrawnBalance,
-//       GDV, TotalInterestCharged, TotalInterestDue, TotalFeesDue,
-//       BalanceOfLoanOutstanding, TotalRedemptionAmount, capitalizeLoanOnDefault,
-//       defaultAtEndOfTerm, defaultCompounded, defaultRate);
-//     let outexit = exit.getExitFees()
-//     assert.equal(outexit[" Due Fees"], 5000);
-//   });
+  it('should be able to update the exit fees Amount ', () => {
+    let exit = new  EXITFEES(startDate, repaymentDate, drawdownDate, dailyOneInterest,
+      dailyRateOfLoanOne, balanceOfLoanOne, loanOneInterestServiced,
+      loanOneInterestComponded, dailyTwoInterest, dailyRateOfLoanTwo,
+      balanceOfLoanTwo, loanTwoInterestServiced, loanTwoInterestCompounded,
+      nonUtilizationInterestAmount, dailyNonUtilizationInterest, dailyNonUtilizationRate,
+      nonUtilizationInterestServiced, nonUtilizationInterestCompounded, interestServiced,
+      loanInterestRate, minimumInterestAmount, totalInterestDue, totalInterestPaid,
+      totalInterestCharged, totalInterestNotDue, totalInterestOutstanding,
+      totalInterest, balancingInterestCharged, balancingInterestDue,
+      balancingInterestOutstanding, lendingFees, lendingFeePercentage,
+      lendingFeeAddedToLoan, lendingFeeInterestServiced, otherFeesPayable,
+      OtherFeesAddedToLoan, feeCharged, feeDue, feePaid, feeOutstanding,
+      exitFeeAmount, exitFeeGDV, exitFeeLoan, facilityAmount,
+      loanType, drawdownOneAmount, drawdownAmountTwo, undrawnBalance,
+      GDV, TotalInterestCharged, TotalInterestDue, TotalFeesDue,
+      BalanceOfLoanOutstanding, TotalRedemptionAmount, capitalizeLoanOnDefault,
+      defaultAtEndOfTerm, defaultCompounded, defaultRate);
+    let outexit = exit.getExitFees()
+    assert.equal(outexit, 5000);
+  });
 
-// });
+});
 
