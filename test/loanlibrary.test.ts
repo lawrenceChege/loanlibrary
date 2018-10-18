@@ -1,10 +1,15 @@
 // test for loan library
 /// <reference path ="../src/loanlibrary.ts" />
 
-import {
-  LENDINGFEE, LOAN, LOANTYPEONE, LOANDATA, LOANTYPETWO,
-  EXITFEES, DRAWDOWN, OTHERFEES, NONUTIL, MAIN, MININTEREST
-} from "../src/loanlibrary";
+import {LOAN, LOANDATA, MAIN } from "../src/loanlibrary";
+import { EXITFEES } from "../src/exitfees";
+import { MININTEREST } from "../src/mininterest";
+import { NONUTIL } from "../src/nonutil";
+import { LOANTYPEONE } from "../src/loantypeone";
+import { LOANTYPETWO } from "../src/loantypetwo";
+import { OTHERFEES } from "../src/otherfees";
+import { LENDINGFEE } from "../src/lendingfee";
+import { DRAWDOWN } from "../src/drawdown";
 
 import * as mocha from 'mocha';
 import * as chai from 'chai';
